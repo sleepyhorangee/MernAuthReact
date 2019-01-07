@@ -2,9 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const path = require('path');
-
 const items = require('./routes/api/items');
-
 const app = express();
 
 // Bodyparser Middleware
@@ -21,11 +19,11 @@ mongoose
   .catch(err => console.log(err));
 
 // Use Routes
-app.use('/api/items', items);
+app.use('/api/items', items); // items = require('./routes/api/items')  
 
-// Serve static assets if in production
+// Serve static assets ( JavaScript files, style sheets, and images) if in production
 if (process.env.NODE_ENV === 'production') {
-  // Set static folder
+  // Set static folder => appears after npm build
   app.use(express.static('client/build'));
 
   app.get('*', (req, res) => {
