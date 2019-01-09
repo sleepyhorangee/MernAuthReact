@@ -9,6 +9,9 @@ import {
   NavLink,
   Container
 } from 'reactstrap';
+import Home from './Home';
+import About from './About';
+import News from './News';
 
 class AppNavbar extends Component {
   state = {
@@ -26,7 +29,10 @@ class AppNavbar extends Component {
       <div>
         <Navbar color="dark" dark expand="sm" className="mb-5">
           <Container>
-            <NavbarBrand href="/">ShoppingList</NavbarBrand>
+            <NavbarBrand href="/">Home</NavbarBrand>
+            <NavbarBrand href="/about">About</NavbarBrand>
+            <NavbarBrand href="/App">App</NavbarBrand>
+            <NavbarBrand href="/news">News</NavbarBrand>
             <NavbarToggler onClick={this.toggle} />
             <Collapse isOpen={this.state.isOpen} navbar>
               <Nav className="ml-auto" navbar>

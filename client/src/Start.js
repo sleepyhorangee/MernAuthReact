@@ -2,8 +2,11 @@ import React, { Component } from "react"
 // import "./Start.css"
 import firebase from "firebase"
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth"
-import  { BrowserRouter, Route } from "react-router-dom"
+import  { BrowserRouter as Router, Route } from "react-router-dom"
+// import Navbar from './components/CustomNavbar';
 import App from "./App"
+import AppNavbar from './components/AppNavbar';
+
 
 firebase.initializeApp({
     apiKey: "AIzaSyCd2KQ2E7FkBFx1jnxu0B-flFmQzRo2lZc",
@@ -41,20 +44,25 @@ class Start extends Component {
     render() {
         return (
             <div className="Start">
+                <Router>
+                    <div>
+                        <Route path="/" component={Start} exact />
+                        {/* <Navbar />
+                         <Route path ="/App" component = {App}  />
+                        <Route path="/about" component={About} />
+                        <Route path="/news" component={News} /> */}
+                    </div>
+                </Router>
+                 <AppNavbar />
                 {this.state.isSignedIn ? (
                     <span>
                         <div>Signed In!</div>
                         <button onClick={() => firebase.auth().signOut()}>Sign out!</button>
                         <h1>Welcome {firebase.auth().currentUser.displayName}</h1>
-                        <BrowserRouter>
-                            <div>
-                                <Route path ="/App" component = {App} exact />
-                            </div>
-                        </BrowserRouter>
-                        <img
-                            alt="profile picture"
-                            src={firebase.auth().currentUser.photoURL}
-                        />
+                            <img class="login-pic"
+                                alt="profile picture"
+                                src={firebase.auth().currentUser.photoURL}
+                            />
                     </span>
                 ) : (
                         <StyledFirebaseAuth
